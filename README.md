@@ -136,13 +136,6 @@ Then navigate to `http://localhost:8000` in your browser.
 - **Localhost Conflicts:**  
   If you receive errors regarding ports already in use, ensure that no other applications are running on the specified ports (`8501` for Streamlit and `8000` for the HTTP server).
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## Contact
 
-For any questions or feedback, please open an issue or contact [your-email@example.com](mailto:your-email@example.com).
-```
-
-Feel free to modify the repository URL, contact information, and other details as needed for your project.
+For any questions or feedback, please open an issue or contact [ssingh7@mit.edu](mailto:ssingh7@mit.edu).
