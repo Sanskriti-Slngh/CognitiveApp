@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cognitive Odyssey</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-top">
+      <h1 id="site-title">Cognitive Odyssey</h1>
+      <div class="personalization">
+        <label for="username-input">Hello,</label>
+        <input type="text" id="username-input" placeholder="Your name" />
+        <button id="save-name-btn">Save</button>
+      </div>
+    </div>
+    <p class="subtitle" id="welcome-message">Embark on your cognitive journey.</p>
+  </header>
+
+  <!-- Global Navigation -->
+  <nav class="game-buttons">
+    <button class="game-btn" onclick="navigateTo('home-screen')">Home</button>
+    <button class="game-btn" onclick="navigateTo('advanced-analysis')">Advanced Analysis</button>
+    <button class="game-btn" onclick="navigateTo('memory-game')">Memory</button>
+    <button class="game-btn" onclick="navigateTo('reaction-game')">Reaction</button>
+    <button class="game-btn" onclick="navigateTo('stroop-game')">Stroop</button>
+    <button class="game-btn" onclick="navigateTo('sequence-game')">Sequence</button>
+    <button class="game-btn" onclick="navigateTo('math-game')">Math</button>
+    <button class="game-btn" onclick="navigateTo('scramble-game')">Scramble</button>
+    <button class="game-btn" onclick="navigateTo('pattern-game')">Pattern</button>
+    <button class="game-btn" onclick="navigateTo('visual-game')">Visual Search</button>
+    <button class="game-btn" onclick="navigateTo('rotation-game')">Spatial Rotation</button>
+    <button class="game-btn" onclick="navigateTo('number-game')">Number Recall</button>
+  </nav>
+
+  <!-- Home Screen Section -->
+  <section id="home-screen" class="card">
+    <h2>Home</h2>
+    <p>Choose a game to challenge your mind. Your overall cognitive performance and risk assessments update automatically.</p>
+    
+    <div class="analysis-bar">
+      <p>Cognitive Performance</p>
+      <div class="trend-bar">
+        <div id="trend-bar-fill"></div>
+      </div>
+      <p id="trend-bar-label"></p>
+    </div>
+
+    <!-- Risk Assessment Section -->
+    <div id="risk-assessment">
+      <h3>Risk Assessment</h3>
+      <p id="alzheimers-risk"></p>
+      <p id="parkinsons-risk"></p>
+      <p id="ftd-risk"></p>
+      <p id="mci-risk"></p>
+    </div>
+
+    <button class="reset-btn" onclick="resetCognitivePerformance()">Reset Performance</button>
+  </section>
+
+  <!-- Advanced Analysis Section (Embedded via iframe) -->
+  <section id="advanced-analysis" class="card hidden">
+    <h2>Advanced Analysis</h2>
+    <p>This section provides a detailed diagnostic assessment.</p>
+    <iframe src="http://localhost:8501" title="Advanced Health Assessment"></iframe>
+    <button class="home-btn" onclick="goHome()">Back Home</button>
+  </section>
+
+  <!-- Memory Game Section -->
+  <section id="memory-game" class="card hidden">
+    <h2>Memory Game</h2>
+    <p class="instructions">Memorize the words shown below, then type them back (separated by commas).</p>
+    <p id="memory-words" class="game-display"></p>
+    <div id="memory-answer-section" class="hidden">
+      <input type="text" id="memory-answer" placeholder="e.g. apple, cat, ..." />
+      <button onclick="checkMemoryAnswer()">Submit</button>
+    </div>
+    <p id="memory-score" class="result hidden"></p>
+    <p id="memory-analysis" class="analysis-msg"></p>
+    <button class="home-btn" onclick="goHome()">Back Home</button>
+  </section>
+
+  <!-- Reaction Game Section -->
+  <section id="reaction-game" class="card hidden">
+    <h2>Reaction Time</h2>
+    <p class="instructions">When the button appears (at a random spot), click it as quickly as you can.</p>
+    <div id="reaction-container">
+      <button id="reaction-btn" onclick="handleReactionClick()" disabled>Tap</button>
+    </div>
+    <p id="reaction-prompt" class="game-display">Wait...</p>
+    <p id="reaction-result" class="result hidden"></p>
+    <p id="reaction-analysis" class="analysis-msg"></p>
+    <button class="home-btn" onclick="goHome()">Back Home</button>
+  </section>
+
+  <!-- Stroop Test Section -->
+  <section id="stroop-game" class="card hidden">
+    <h2>Stroop Test</h2>
+    <p class="instructions">Select the color of the text (ignore the word).</p>
+    <p id="stroop-word" class="stroop-word"></p>
+    <div id="stroop-buttons"></div>
+    <p id="stroop-score" class="result"></p>
+    <p id="stroop-analysis" class="analysis-msg"></p>
+    <button class="home-btn" onclick="goHome()">Back Home</button>
+  </section>
+
+  <!-- Sequence Memory Section -->
+  <section id="sequence-game" class="card hidden">
+    <h2>Sequence Memory</h2>
+    <p class="instructions">Watch the flashing sequence, then click the tiles in the same order.</p>
+    <div id="sequence-grid" class="sequence-grid"></div>
+    <p id="sequence-level" class="result"></p>
+    <p id="sequence-analysis" class="analysis-msg"></p>
+    <button class="home-btn" onclick="goHome()">Back Home</button>
+  </section>
+
+  <!-- Math Game Section -->
+  <section id="math-game" class="card hidden">
+    <h2>Math Challenge</h2>
+    <p class="instructions">Solve the math problem. Both accuracy and speed count!</p>
+    <p id="math-problem" class="game-display"></p>
+    <div id="math-answer-section">
+      <input type="number" id="math-answer" placeholder="Your answer" />
+      <button onclick="checkMathAnswer()">Submit</button>
+    </div>
+    <p id="math-result" class="result hidden"></p>
+    <p id="math-analysis" class="analysis-msg"></p>
+    <button class="home-btn" onclick="goHome()">Back Home</button>
+  </section>
+
+  <!-- Word Scramble Section -->
+  <section id="scramble-game" class="card hidden">
+    <h2>Word Scramble</h2>
+    <p class="instructions">Unscramble the letters to form the correct word.</p>
+    <p id="scramble-letters" class="game-display"></p>
+    <div id="scramble-answer-section">
+      <input type="text" id="scramble-answer" placeholder="Type the word..." />
+      <button onclick="checkScrambleAnswer()">Submit</button>
+    </div>
+    <p id="scramble-result" class="result hidden"></p>
+    <p id="scramble-analysis" class="analysis-msg"></p>
+    <button class="home-btn" onclick="goHome()">Back Home</button>
+  </section>
+
+  <!-- Pattern Match Section -->
+  <section id="pattern-game" class="card hidden">
+    <h2>Pattern Match</h2>
+    <p class="instructions">Watch a pattern of colored tiles flash, then reproduce it by clicking the tiles.</p>
+    <div id="pattern-grid" class="pattern-grid"></div>
+    <button id="pattern-check-btn" onclick="checkPattern()">Check Pattern</button>
+    <p id="pattern-result" class="result hidden"></p>
+    <p id="pattern-analysis" class="analysis-msg"></p>
+    <button class="home-btn" onclick="goHome()">Back Home</button>
+  </section>
+
+  <!-- Visual Search Section -->
+  <section id="visual-game" class="card hidden">
+    <h2>Visual Search</h2>
+    <p class="instructions">Find the target symbol among distractors. Both speed and accuracy matter.</p>
+    <p id="visual-round" class="result"></p>
+    <div id="visual-field" class="visual-field"></div>
+    <p id="visual-timer" class="game-display"></p>
+    <p id="visual-result" class="result hidden"></p>
+    <p id="visual-analysis" class="analysis-msg"></p>
+    <button class="home-btn" onclick="goHome()">Back Home</button>
+  </section>
+
+  <!-- Spatial Rotation Section -->
+  <section id="rotation-game" class="card hidden">
+    <h2>Spatial Rotation</h2>
+    <p class="instructions">Compare the original shape with the new shape. Decide if the new shape is rotated (Same) or mirrored.</p>
+    <div id="rotation-original" class="rotation-display"></div>
+    <div id="rotation-display" class="rotation-display"></div>
+    <button onclick="rotationCheck(true)">Same</button>
+    <button onclick="rotationCheck(false)">Mirrored</button>
+    <p id="rotation-result" class="result hidden"></p>
+    <p id="rotation-analysis" class="analysis-msg"></p>
+    <button class="home-btn" onclick="goHome()">Back Home</button>
+  </section>
+
+  <!-- Number Recall Section -->
+  <section id="number-game" class="card hidden">
+    <h2>Short-Term Number Recall</h2>
+    <p class="instructions">A sequence of digits will flash briefly. Remember them and type them in. Speed and accuracy are both important.</p>
+    <p id="number-flash" class="game-display"></p>
+    <div id="number-answer-section" class="hidden">
+      <input type="text" id="number-answer" placeholder="Enter digits..." />
+      <button onclick="checkNumberRecall()">Submit</button>
+    </div>
+    <p id="number-result" class="result hidden"></p>
+    <p id="number-analysis" class="analysis-msg"></p>
+    <button class="home-btn" onclick="goHome()">Back Home</button>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p class="disclaimer">
+      <strong>Disclaimer:</strong> This is a demonstration and not a clinical tool. For any health concerns, consult a professional.
+    </p>
+  </footer>
+
+</body>
+</html>
