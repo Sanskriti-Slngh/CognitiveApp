@@ -5,27 +5,39 @@ This repository contains a web application for analyzing cognitive health using 
 
 ## Repository Structure
 
-├── analyze_sensor_data.py    # Module for processing and analyzing sensor data.
+├── static 
 
-├── cognitive_files.html      # HTML file for the cognitive games interface.
+│ ├── script.js 
 
-├── demo.py                   # Main Streamlit application file.
+│ └── style.css 
 
-├── diagnostic_model.py       # Module for generating diagnostic insights from speech features.
+├── imu_client │ 
 
-├── feature_extractor.py      # Module for extracting speech features.
+├── imu_client.h 
 
-├── index.html                # Standalone HTML page (optional).
+│ └── imu_client.ino 
 
-├── sensor_metrics.json       # Sample sensor metrics data in JSON format.
+├── imu_server 
 
-├── static                    # Folder containing static assets.
+│ ├── imu_server.py 
 
-│   ├── script.js             # JavaScript for cognitive games.
+│ └── model_server.py 
 
-│   └── style.css             # CSS styling for cognitive games.
+├── analyze_sensor_data.py 
 
-└── README.md                 # This file.
+├── cognitive_files.html 
+
+├── demo.py 
+
+├── diagnostic_model.py 
+
+├── feature_extractor.py 
+
+├── index.html 
+
+├── sensor_metrics.json 
+
+└── README.md
 
 ## Features
 
