@@ -1,25 +1,31 @@
 
-```markdown
-# Cognitive Health Analyzer
+## Install Dependencies:
 
 This repository contains a web application for analyzing cognitive health using multiple modalities including speech, movement (IMU sensor data), and interactive cognitive games. The app is built with [Streamlit](https://streamlit.io/) and includes data analysis using machine learning pipelines, sensor data visualization, and a performance tracker for cognitive games.
 
 ## Repository Structure
 
-```
-.
 ├── analyze_sensor_data.py    # Module for processing and analyzing sensor data.
+
 ├── cognitive_files.html      # HTML file for the cognitive games interface.
+
 ├── demo.py                   # Main Streamlit application file.
+
 ├── diagnostic_model.py       # Module for generating diagnostic insights from speech features.
+
 ├── feature_extractor.py      # Module for extracting speech features.
+
 ├── index.html                # Standalone HTML page (optional).
+
 ├── sensor_metrics.json       # Sample sensor metrics data in JSON format.
+
 ├── static                    # Folder containing static assets.
+
 │   ├── script.js             # JavaScript for cognitive games.
+
 │   └── style.css             # CSS styling for cognitive games.
+
 └── README.md                 # This file.
-```
 
 ## Features
 
